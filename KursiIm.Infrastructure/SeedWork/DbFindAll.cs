@@ -10,6 +10,7 @@ using KursiIm.Infrastructure;
 using KursiIm.Infrastructure.Logs;
 using KursiIm.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
+using KursiIm.Infrastructure.KursiIm;
 
 namespace KursiIm.Infrastructure.SeedWork
 {

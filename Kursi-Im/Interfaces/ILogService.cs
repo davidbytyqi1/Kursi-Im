@@ -1,4 +1,5 @@
 ﻿using KursiIm.Business;
+using KursiIm.Domain.KursiIm;
 using KursiIm.Domain.Logs;
 using System;
 using System.Collections.Generic;

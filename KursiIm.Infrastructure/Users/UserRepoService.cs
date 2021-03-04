@@ -1,5 +1,5 @@
-﻿using KursiIm.Domain.SeedWork;
-using KursiIm.Domain.Users;
+﻿using KursiIm.Domain.Users;
+using KursiIm.Domain.SeedWork;
 using KursiIm.Infrastructure.SeedWork;
 using KursiIm.SharedModel.Roles;
 using System;
@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using KursiIm.Domain.KursiIm;
 
 namespace KursiIm.Infrastructure.Users
 {
@@ -25,7 +26,7 @@ namespace KursiIm.Infrastructure.Users
             _userRepository.Add(_);
         }
 
-        public User GetUserByUsername(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted && t.IdRole != (int)RoleEnum.Admin).FirstOrDefault();
+        public User GetUserByUsername(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted && t.Idrole != (int)RoleEnum.Admin).FirstOrDefault();
 
         public bool CheckUserAccount(string username, int? IdUser)
         {
@@ -47,12 +48,12 @@ namespace KursiIm.Infrastructure.Users
 
         public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return _userRepository.ListAll();
         }
 
         public IEnumerable<User> GetUsersWithInactive()
         {
-            throw new NotImplementedException();
+           return _userRepository.ListByCriteria(t=>!t.IsDeleted);
         }
 
         public void UpdateUser(User _)
@@ -67,7 +68,7 @@ namespace KursiIm.Infrastructure.Users
 
         public IEnumerable<User> GetUsers()
         {
-            return new List<User>();
+            return _userRepository.ListByCriteria(x=>x.IsActive);
         }
     }
 }

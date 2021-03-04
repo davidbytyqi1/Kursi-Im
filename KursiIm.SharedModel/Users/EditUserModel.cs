@@ -19,6 +19,7 @@ namespace KursiIm.SharedModel.Users
         public bool HasExpire { get; set; }
         public bool WithUserAuthorization { get; set; }
         public string SerialNumber { get; set; }
+        public int IdUserAuthorizationType { get; set; }
         // public int IdOrganisation { get; set; }
     }
 

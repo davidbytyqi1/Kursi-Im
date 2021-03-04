@@ -1,4 +1,5 @@
 ﻿using KursiIm.Domain.SeedWork;
+using KursiIm.Infrastructure.KursiIm;
 using KursiIm.Infrastructure.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using System;

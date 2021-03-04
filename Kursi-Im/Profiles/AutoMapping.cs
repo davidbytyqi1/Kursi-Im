@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KursiIm.Domain.KursiIm;
 using KursiIm.Domain.Users;
 using KursiIm.SharedModel.Users;
 using System;

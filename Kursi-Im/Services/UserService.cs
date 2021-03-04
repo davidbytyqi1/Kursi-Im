@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KursiIm.Business;
 using KursiIm.Domain.Administrations;
+using KursiIm.Domain.KursiIm;
 using KursiIm.Domain.Logs;
 using KursiIm.Domain.Users;
 using KursiIm.Infrastructure.JwtAuthentication.Abstractions;
@@ -112,15 +113,15 @@ namespace KursiImSource.Services
                 //    }
                 //_repository.AddRangeRoleAuthorization(list);
 
-                if (!string.IsNullOrWhiteSpace(user.SerialNumber))
-                {
+                //if (!string.IsNullOrWhiteSpace(user.SerialNumber))
+                //{
                     //var deviceUser = new DeviceUsers()
                     //{
                     //    IdUser = user.Id,
                     //    IdDevice = _deviceRepository.GetDevices().FirstOrDefault().Id
                     //};
                     //_deviceRepository.AddDeviceUser(deviceUser);
-                }
+                //}
 
                 var body = "I/E nderuar, <br/>" +
                     "Nje llogari eshte krijuar me email-in tend. <br/>" +
@@ -309,11 +310,11 @@ namespace KursiImSource.Services
             user.Last = _.Last;
             user.IsActive = _.IsActive;
             user.ExpireDate = _.ExprieDate;
-            user.IdRole = _.IdRole;
+            user.Idrole = _.IdRole;
             user.EmailAddress = _.EmailAddress;
-           // user.IdUserAuthorizationType = _.IdUserAuthorizationType;
+            user.IduserAuthorizationType = _.IdUserAuthorizationType;
             //user.WithUserAuthorization = _.WithUserAuthorization;
-            user.SerialNumber = _.SerialNumber;
+           // user.SerialNumber = _.SerialNumber;
             //user.IdEmployee = _.IdEmployee;
             EntryUpdateUserHelper.FillUpdateData(ref user);
 
@@ -529,8 +530,10 @@ namespace KursiImSource.Services
 
 
 
-        public IEnumerable<UserModel> GetUsers() => _mapper.Map<IList<UserModel>>(_repository.GetUsers());
-
+        public IEnumerable<UserModel> GetUsers()
+        {
+            return _mapper.Map<IList<UserModel>>(_repository.GetUsers());
+        }
 
         public Response<object> MakeAllUserPassiveButThis()
         {

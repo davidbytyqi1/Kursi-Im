@@ -10,6 +10,7 @@ using KursiIm.Domain.SeedWork;
 using KursiIm.Domain.Users;
 using KursiIm.Infrastructure.Emails;
 using KursiIm.Infrastructure.JwtAuthentication.Extensions;
+using KursiIm.Infrastructure.KursiIm;
 using KursiIm.Infrastructure.Logs;
 using KursiIm.Infrastructure.Repositories;
 using KursiIm.Infrastructure.SeedWork;

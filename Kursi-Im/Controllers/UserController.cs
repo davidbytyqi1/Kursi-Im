@@ -55,7 +55,9 @@ namespace KursiImSource.Controllers
         public IActionResult Login([FromBody]Credentials credentials) => Ok(_userService.VerifyLogInUser(credentials));
 
         [HttpGet("getUser/{id}")]
-        [SwaggerOperation(Summary = "Get User", Description = "If you want to get user data for some reason this is the right endpoint. Get user using his \"id\". " +
+        [SwaggerOperation(Summary = "Get User", Description = "If you want to get user data for some reason this is the right endpoint." +
+            "" +
+            " Get user using his \"id\". " +
             "<br/> ResponseBody \"status\" can be Done=0")]
         [ProducesResponseType(typeof(Response<UserModel>), 200)]
         public IActionResult GetUser(int id) => Ok(_userService.GetUser(id));

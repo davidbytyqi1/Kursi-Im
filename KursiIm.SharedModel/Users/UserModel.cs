@@ -15,10 +15,10 @@ namespace KursiIm.SharedModel.Users
         public string Account { get; set; }
         public string EmailAddress { get; set; }
         //public int IdOrganisation { get; set; }
-        public int? IdEmployee { get; set; }
+        //public int? IdEmployee { get; set; }
         public bool WithUserAuthorization { get; set; }
         public bool IsActive { get; set; }
-        public string SerialNumber { get; set; }
+        //public string SerialNumber { get; set; }
         public string Role { get; set; }
         public DateTime? ExpireDate { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KursiIm.Business;
+using KursiIm.Domain.KursiIm;
 using KursiIm.Domain.Logs;
 using KursiIm.Domain.Users;
 using KursiImSource.Interfaces;
@@ -35,7 +36,7 @@ namespace KursiImSource.Services
 
         public void AddLogDataChange(byte[] before, byte[] after, DataChangeStatus action, string TableName)
         {
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
         }
 
         public void AddLogFailedAuthentication(string username)
@@ -45,7 +46,7 @@ namespace KursiImSource.Services
 
         public void AddLogUserAuthorization(int authorizationStatus, bool isFromPortal)
         {
-            throw new NotImplementedException();
+         //   throw new NotImplementedException();
         }
 
         public Response<LogUserAuthorization> SetLogUserAuthorization(int authorizationStatus, bool isFromPortal)

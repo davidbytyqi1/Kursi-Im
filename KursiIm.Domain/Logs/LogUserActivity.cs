@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KursiIm.Domain.KursiIm
 {
-    public partial class LogUserAuthorization
+    public partial class LogUserActivity
     {
         public int Id { get; set; }
         public int Iduser { get; set; }
@@ -14,10 +14,14 @@ namespace KursiIm.Domain.KursiIm
         public string Ipaddress { get; set; }
         public int IdlogBrowserType { get; set; }
         public int IdlogOperatingSystemType { get; set; }
+        public int Idmodule { get; set; }
+        public string Url { get; set; }
+        public bool? IsPublic { get; set; }
         public bool IsMobileDevice { get; set; }
-        public int IdlogUserAuthorizationStatus { get; set; }
-        public DateTime EntryUser { get; set; }
+        public int IdlogUserActivityStatus { get; set; }
+        public string EntryUser { get; set; }
 
-        public virtual LogUserAuthorizationStatus IdlogUserAuthorizationStatusNavigation { get; set; }
+        public virtual LogUserActivityStatus IdlogUserActivityStatusNavigation { get; set; }
+        public virtual Module IdmoduleNavigation { get; set; }
     }
 }
