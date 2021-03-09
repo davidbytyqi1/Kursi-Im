@@ -9,7 +9,7 @@ namespace KursiIm.Domain.SeedWork
     public class DeleteClass : BaseEntity
     {
         public bool IsDeleted { get; set; }
-        public int? IddeleteUser { get; set; }
+        public int? IDDeleteUser { get; set; }
         public DateTime? DeleteDate { get; set; }
 
     }

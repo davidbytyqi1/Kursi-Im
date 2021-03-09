@@ -188,7 +188,7 @@ namespace KursiImSource.Services
 
                     var response = new LoginResponse
                     {
-                        Id = user.Id,
+                        Id = user.ID,
                         Token = accessTokenResult.AccessToken,
                         RefreshToken = user.RefreshToken,
                         ValidTokenTimeInMinutes = _token.ValidTimeInMinutes,
@@ -237,7 +237,7 @@ namespace KursiImSource.Services
             if (!string.IsNullOrEmpty(username))
             {
                 var currentUser = _repository.GetUserByUsername(username);
-                user.IdentryUser = currentUser.IdentryUser;
+                user.IDEntryUser = currentUser.IDEntryUser;
                 user.EntryUser = currentUser.Account;
             }
             user.EntryDate = DateTime.Now;
@@ -275,9 +275,9 @@ namespace KursiImSource.Services
             user.Last = _.Last;
             user.IsActive = _.IsActive;
             user.ExpireDate = _.ExprieDate;
-            user.Idrole = _.IdRole;
+            user.IDRole = _.IdRole;
             user.EmailAddress = _.EmailAddress;
-            user.IduserAuthorizationType = _.IdUserAuthorizationType;
+            user.IDUserAuthorizationType = _.IdUserAuthorizationType;
             //user.WithUserAuthorization = _.WithUserAuthorization;
            // user.SerialNumber = _.SerialNumber;
             //user.IdEmployee = _.IdEmployee;
@@ -305,7 +305,7 @@ namespace KursiImSource.Services
                 {
                     return new Response<object>(PublicResultStatusCodes.EmailSentFailed);
                 }
-                var hash = HashHelper.GetSha256FromString(user.Id + " " + user.Account);
+                var hash = HashHelper.GetSha256FromString(user.ID + " " + user.Account);
 
             //    var bodyHTML = _settingsDictonaryService.GetDictonariesByKeyAndGroup("PasswordResetEmail", 2).FirstOrDefault().ValueSq;
                 var url = _contextAccessor.HttpContext.Request.Headers["sender-url"];
@@ -339,16 +339,16 @@ namespace KursiImSource.Services
             var user = _repository.GetUsersWithCriteria(u => u.ResetPasswordToken == _.Identifier).FirstOrDefault();
             if (user != null)
             {
-                var hash = HashHelper.GetSha256FromString(user.Id + " " + user.Account);
+                var hash = HashHelper.GetSha256FromString(user.ID + " " + user.Account);
 
                 if (!hash.Equals(_.Hash))
                     return new Response<ResetPasswordCheckerModel>(PublicResultStatusCodes.Done, new ResetPasswordCheckerModel());
 
                 var result = new ResetPasswordCheckerModel();
                 result.IsValid = true;
-                result.Id = user.Id;
+                result.Id = user.ID;
 
-                var returnHash = HashHelper.GetSha256FromString(user.Account + " " + user.Id + "$aa$" + user.EntryDate);
+                var returnHash = HashHelper.GetSha256FromString(user.Account + " " + user.ID + "$aa$" + user.EntryDate);
                 result.Hash = returnHash;
 
                 return new Response<ResetPasswordCheckerModel>(PublicResultStatusCodes.Done, result);
@@ -364,7 +364,7 @@ namespace KursiImSource.Services
 
             if (user != null)
             {
-                var hash = HashHelper.GetSha256FromString(user.Account + " " + user.Id + "$aa$" + user.EntryDate);
+                var hash = HashHelper.GetSha256FromString(user.Account + " " + user.ID + "$aa$" + user.EntryDate);
                 if (!hash.Equals(_.Hash))
                     return new Response<object>(PublicResultStatusCodes.ModelIsNotValid);
 
@@ -503,7 +503,7 @@ namespace KursiImSource.Services
         public Response<object> MakeAllUserPassiveButThis()
         {
             var currentUserID = int.Parse(_contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var users = _repository.GetUsersWithCriteria(_ => _.Id != currentUserID);
+            var users = _repository.GetUsersWithCriteria(_ => _.ID != currentUserID);
             foreach (var user in users)
             {
                 user.IsActive = false;
@@ -531,7 +531,7 @@ namespace KursiImSource.Services
             if (user == null)
                 return false;
 
-            var unhashed = user.Id + " " + user.Account;
+            var unhashed = user.ID + " " + user.Account;
 
             var hashDb = HashHelper.GetSha256FromString(unhashed);
 
@@ -551,7 +551,7 @@ namespace KursiImSource.Services
         {
             var myClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.ID.ToString()),
                 new Claim(ClaimTypes.GivenName, user.First),
                 new Claim(ClaimTypes.Surname, user.Last),
             };

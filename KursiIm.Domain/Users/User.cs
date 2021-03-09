@@ -19,7 +19,7 @@ namespace KursiIm.Domain.KursiIm
         public bool IsActive { get; set; }
         public DateTime? ExpireDate { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public int? IdupdateUser { get; set; }
+        public int? IDUpdateUser { get; set; }
         public string UpdateUser { get; set; }
         public string RefreshToken { get; set; }
         public bool ChangePasswordNeeded { get; set; }
@@ -29,15 +29,14 @@ namespace KursiIm.Domain.KursiIm
         public Guid? ConfirmationNumber { get; set; }
         public bool? WasConfirm { get; set; }
         public DateTime? ConfirmationDate { get; set; }
-        public int IdentryUser { get; set; }
+        public int IDEntryUser { get; set; }
         public string EntryUser { get; set; }
         public DateTime EntryDate { get; set; }
         public string UserDelete { get; set; }
-       
-        public int? Idrole { get; set; }
-        public int? IduserAuthorizationType { get; set; }
+        public int? IDRole { get; set; }
+        public int? IDUserAuthorizationType { get; set; }
 
-        public virtual Role IdroleNavigation { get; set; }
-        public virtual UserAuthorizationType IduserAuthorizationTypeNavigation { get; set; }
+        public virtual Role IDRoleNavigation { get; set; }
+        public virtual UserAuthorizationType IDUserAuthorizationTypeNavigation { get; set; }
     }
 }

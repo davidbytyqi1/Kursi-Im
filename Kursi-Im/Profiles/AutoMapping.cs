@@ -47,19 +47,19 @@ namespace KursiImSource.Profiles
 
 
             CreateMap<LogUserAuthorization, LogUserAuthorizationModel>()
-                .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IdlogBrowserTypeNavigation.Title))
-                .ForMember(dest => dest.LogUserAuthorizationStatus, opt => opt.MapFrom(src => src.IdlogUserAuthorizationStatusNavigation.Title))
-                .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IdlogOperatingSystemTypeNavigation.Title));
+                .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IDLogBrowserTypeNavigation.Title))
+                .ForMember(dest => dest.LogUserAuthorizationStatus, opt => opt.MapFrom(src => src.IDLogUserAuthorizationStatusNavigation.Title))
+                .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IDLogOperatingSystemTypeNavigation.Title));
 
             CreateMap<LogUserActivity, LogUserActivityModel>()
-                .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IdlogBrowserTypeNavigation.Title))
-                .ForMember(dest => dest.LogUserActivityStatus, opt => opt.MapFrom(src => src.IdlogUserActivityStatusNavigation.Title))
-                .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IdlogOperatingSystemTypeNavigation.Title))
-                .ForMember(dest => dest.Module, opt => opt.MapFrom(src => src.IdmoduleNavigation.Title));
+                .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IDLogBrowserTypeNavigation.Title))
+                .ForMember(dest => dest.LogUserActivityStatus, opt => opt.MapFrom(src => src.IDLogUserActivityStatusNavigation.Title))
+                .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IDLogOperatingSystemTypeNavigation.Title))
+                .ForMember(dest => dest.Module, opt => opt.MapFrom(src => src.IDModuleNavigation.Title));
 
             CreateMap<LogFailedAuthentication, LogFailedAuthenticationModel>()
-             .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IdlogBrowserTypeNavigation.Title))
-             .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IdlogOperationSystemTypeNavigation.Title));
+             .ForMember(dest => dest.LogBrowserType, opt => opt.MapFrom(src => src.IDLogBrowserTypeNavigation.Title))
+             .ForMember(dest => dest.LogOperatingSystemType, opt => opt.MapFrom(src => src.IDLogOperationSystemTypeNavigation.Title));
 
           
         }

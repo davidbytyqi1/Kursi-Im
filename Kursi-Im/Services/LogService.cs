@@ -43,17 +43,17 @@ namespace KursiImSource.Services
             var logDataChange = new LogDataChange
             {
                 EntryDate = DateTime.Now,
-                IdentryUser = entryUser != null ? entryUser.Id : 999999,
+                IDEntryUser = entryUser != null ? entryUser.ID : 999999,
                 EntryUser = entryUser != null ? entryUser.Account : "public",
                 Before = before,
                 After = after,
-                Idtable = IdTable,
+                IDTable = IdTable,
                 ComputerName = NetworkHelper.GetComputerName(),
-                Idaddress = NetworkHelper.GetIPAddress(),
-                IdlogBrowserType = NetworkHelper.GetBrowserTypeId(),
-                IdlogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
+                IDAddress = NetworkHelper.GetIPAddress(),
+                IDLogBrowserType = NetworkHelper.GetBrowserTypeId(),
+                IDLogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
                 IsMobileDevice = NetworkHelper.IsMobileDevice(),
-                IdlogDataChangeStatus = (int)action
+                IDLogDataChangeStatus = (int)action
             };
             _logRepository.AddLogDataChange(logDataChange);
         }
@@ -64,9 +64,9 @@ namespace KursiImSource.Services
             {
                 Account = username,
                 ComputerName = NetworkHelper.GetComputerName(),
-                Ipaddress = NetworkHelper.GetIPAddress(),
-                IdlogBrowserType = NetworkHelper.GetBrowserTypeId(),
-                IdlogOperationSystemType = NetworkHelper.GetOperatingSystemTypeId(),
+                IPAddress = NetworkHelper.GetIPAddress(),
+                IDLogBrowserType = NetworkHelper.GetBrowserTypeId(),
+                IDLogOperationSystemType = NetworkHelper.GetOperatingSystemTypeId(),
                 IsMobileDevice = NetworkHelper.IsMobileDevice(),
                 EntryDate = DateTime.Now
             };
@@ -82,14 +82,14 @@ namespace KursiImSource.Services
 
             var logUserAuth = new LogUserAuthorization
             {
-                Iduser = entryUser.Id,
+                IDUser = entryUser.ID,
                 EntryDate = DateTime.Now,
                 ComputerName = NetworkHelper.GetComputerName(),
-                Ipaddress = NetworkHelper.GetIPAddress(),
-                IdlogBrowserType = NetworkHelper.GetBrowserTypeId(),
-                IdlogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
+                IPAddress = NetworkHelper.GetIPAddress(),
+                IDLogBrowserType = NetworkHelper.GetBrowserTypeId(),
+                IDLogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
                 IsMobileDevice = NetworkHelper.IsMobileDevice(),
-                IdlogUserAuthorizationStatus = authorizationStatus,
+                IDLogUserAuthorizationStatus = authorizationStatus,
                 EntryUser = entryUser.Account
             };
 
@@ -108,17 +108,17 @@ namespace KursiImSource.Services
             var logDataChange = new LogUserActivity
             {
                 EntryDate = DateTime.Now,
-                Iduser = entryUser.Id,
+                IDUser = entryUser.ID,
                 EntryUser = entryUser.Account,
                 ComputerName = NetworkHelper.GetComputerName(),
-                Ipaddress = NetworkHelper.GetIPAddress(),
-                IdlogBrowserType = NetworkHelper.GetBrowserTypeId(),
-                IdlogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
-                Idmodule = idModule,
+                IPAddress = NetworkHelper.GetIPAddress(),
+                IDLogBrowserType = NetworkHelper.GetBrowserTypeId(),
+                IDLogOperatingSystemType = NetworkHelper.GetOperatingSystemTypeId(),
+                IDModule = idModule,
                 IsPublic = isPublic,
-                Url = Host,
+                URL = Host,
                 IsMobileDevice = NetworkHelper.IsMobileDevice(),
-                IdlogUserActivityStatus = logUserActivityStatus
+                IDLogUserActivityStatus = logUserActivityStatus
             };
             _logRepository.AddLogUserActivity(logDataChange);
         }

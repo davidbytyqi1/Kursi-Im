@@ -1,1 +1,1 @@
-Scaffold-DbContext "Data Source=LAPTOP-U57H54T6\SQLEXPRESS;Initial Catalog=KursiIm;User ID=sa;Password=P@ssw0rd" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+Scaffold-DbContext -UseDatabaseNames "Data Source=LAPTOP-U57H54T6\SQLEXPRESS;Initial Catalog=KursiIm;User ID=sa;Password=P@ssw0rd" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force

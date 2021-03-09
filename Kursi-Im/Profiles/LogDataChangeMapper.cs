@@ -15,18 +15,18 @@ namespace KursiImSource.Profiles
         {
             var result = new LogDataChangeModel
             {
-                Id = _.Id,
+                Id = _.ID,
                 After = HidePasswordFromDeserialization.Hide(_.After),
                 Before = HidePasswordFromDeserialization.Hide(_.Before),
                 ComputerName = _.ComputerName,
                 EntryDate = _.EntryDate,
                 EntryUser = _.EntryUser,
-                IdEntryUser = _.IdentryUser,
-                IpAddress = _.Idaddress,
+                IdEntryUser = _.IDEntryUser,
+                IpAddress = _.IDAddress,
                 IsMobileDevice = _.IsMobileDevice,
-                LogBrowserType = _.IdlogBrowserTypeNavigation.Title,
-                LogDataChangeStatus = _.IdlogDataChangeStatusNavigation.Title,
-                LogOperatingSystemType = _.IdlogOperatingSystemTypeNavigation.Title
+                LogBrowserType = _.IDLogBrowserTypeNavigation.Title,
+                LogDataChangeStatus = _.IDLogDataChangeStatusNavigation.Title,
+                LogOperatingSystemType = _.IDLogOperatingSystemTypeNavigation.Title
             };
 
             return result;
@@ -39,21 +39,21 @@ namespace KursiImSource.Profiles
             {
                 var model = new LogDataChangeModel
                 {
-                    Id = item.Id,
+                    Id = item.ID,
                     //After = HidePasswordFromDeserialization.Hide(item.After),
                     //Before = HidePasswordFromDeserialization.Hide(item.Before),
                     LogData = new ChangeLogHelper().GetDeserializeObject(item.Before, item.After),
                     ComputerName = item.ComputerName,
-                    IdTable = item.Idtable,
-                    Table = item.IdtableNavigation.Title,
+                    IdTable = item.IDTable,
+                    Table = item.IDTableNavigation.Title,
                     EntryDate = item.EntryDate,
                     EntryUser = item.EntryUser,
-                    IdEntryUser = item.IdentryUser,
-                    IpAddress = item.Idaddress,
+                    IdEntryUser = item.IDEntryUser,
+                    IpAddress = item.IDAddress,
                     IsMobileDevice = item.IsMobileDevice,
-                    LogBrowserType = item.IdlogBrowserTypeNavigation.Title,
-                    LogDataChangeStatus = item.IdlogDataChangeStatusNavigation.Title,
-                    LogOperatingSystemType = item.IdlogOperatingSystemTypeNavigation.Title
+                    LogBrowserType = item.IDLogBrowserTypeNavigation.Title,
+                    LogDataChangeStatus = item.IDLogDataChangeStatusNavigation.Title,
+                    LogOperatingSystemType = item.IDLogOperatingSystemTypeNavigation.Title
                 };
 
                 result.Add(model);

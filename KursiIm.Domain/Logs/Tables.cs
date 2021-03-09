@@ -13,7 +13,6 @@ namespace KursiIm.Domain.KursiIm
             LogDataChange = new HashSet<LogDataChange>();
         }
 
-       // public int Id { get; set; }
         public string Title { get; set; }
 
         public virtual ICollection<LogDataChange> LogDataChange { get; set; }

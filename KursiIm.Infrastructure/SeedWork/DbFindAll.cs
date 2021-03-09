@@ -51,7 +51,7 @@ namespace KursiIm.Infrastructure.SeedWork
                 }
             }
             if (direction == "desc")
-                return query.Where(criteria).OrderByDescending(_ => _.Id);
+                return query.Where(criteria).OrderByDescending(_ => _.ID);
 
             return query.Where(criteria);
         }

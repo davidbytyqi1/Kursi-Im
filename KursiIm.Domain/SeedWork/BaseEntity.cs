@@ -8,6 +8,6 @@ namespace KursiIm.Domain.SeedWork
     [Serializable]
     public class BaseEntity
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
     }
 }

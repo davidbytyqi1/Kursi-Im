@@ -8,23 +8,23 @@ namespace KursiIm.Domain.KursiIm
 {
     public partial class LogDataChange : BaseEntity
     {
-       // public int Id { get; set; }
+        // public int Id { get; set; }
         public DateTime EntryDate { get; set; }
-        public int IdentryUser { get; set; }
+        public int IDEntryUser { get; set; }
         public string EntryUser { get; set; }
         public byte[] Before { get; set; }
         public byte[] After { get; set; }
         public string ComputerName { get; set; }
-        public string Idaddress { get; set; }
-        public int IdlogBrowserType { get; set; }
-        public int IdlogOperatingSystemType { get; set; }
+        public string IDAddress { get; set; }
+        public int IDLogBrowserType { get; set; }
+        public int IDLogOperatingSystemType { get; set; }
         public bool IsMobileDevice { get; set; }
-        public int IdlogDataChangeStatus { get; set; }
-        public int Idtable { get; set; }
+        public int IDLogDataChangeStatus { get; set; }
+        public int IDTable { get; set; }
 
-        public virtual LogInternetBrowserType IdlogBrowserTypeNavigation { get; set; }
-        public virtual LogDataChangeStatus IdlogDataChangeStatusNavigation { get; set; }
-        public virtual LogOperatingSystemType IdlogOperatingSystemTypeNavigation { get; set; }
-        public virtual Tables IdtableNavigation { get; set; }
+        public virtual LogInternetBrowserType IDLogBrowserTypeNavigation { get; set; }
+        public virtual LogDataChangeStatus IDLogDataChangeStatusNavigation { get; set; }
+        public virtual LogOperatingSystemType IDLogOperatingSystemTypeNavigation { get; set; }
+        public virtual Tables IDTableNavigation { get; set; }
     }
 }

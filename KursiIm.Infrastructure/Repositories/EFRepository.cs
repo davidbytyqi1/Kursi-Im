@@ -32,7 +32,7 @@ namespace KursiIm.Infrastructure.Repositories
                     query = query.Include(includes[index]);
                 }
             }
-            return query.FirstOrDefault(t => t.Id == id);
+            return query.FirstOrDefault(t => t.ID == id);
         }
 
         public T GetSingleBySpec(ISpecification<T> spec)
@@ -209,7 +209,7 @@ namespace KursiIm.Infrastructure.Repositories
 
         public virtual T GetLastEntity()
         {
-            return _dbContext.Set<T>().OrderByDescending(t => t.Id).FirstOrDefault();
+            return _dbContext.Set<T>().OrderByDescending(t => t.ID).FirstOrDefault();
         }
 
         public void AddEntity(T entity)

@@ -8,19 +8,19 @@ namespace KursiIm.Domain.KursiIm
 {
     public partial class LogUserAuthorization : BaseEntity
     {
-      //  public int Id { get; set; }
-        public int Iduser { get; set; }
+        //  public int Id { get; set; }
+        public int IDUser { get; set; }
         public DateTime EntryDate { get; set; }
         public string ComputerName { get; set; }
-        public string Ipaddress { get; set; }
-        public int IdlogBrowserType { get; set; }
-        public int IdlogOperatingSystemType { get; set; }
+        public string IPAddress { get; set; }
+        public int IDLogBrowserType { get; set; }
+        public int IDLogOperatingSystemType { get; set; }
         public bool IsMobileDevice { get; set; }
-        public int IdlogUserAuthorizationStatus { get; set; }
+        public int IDLogUserAuthorizationStatus { get; set; }
         public string EntryUser { get; set; }
 
-        public virtual LogUserAuthorizationStatus IdlogUserAuthorizationStatusNavigation { get; set; }
-        public virtual LogInternetBrowserType IdlogBrowserTypeNavigation { get; set; }
-        public virtual LogOperatingSystemType IdlogOperatingSystemTypeNavigation { get; set; }
+        public virtual LogInternetBrowserType IDLogBrowserTypeNavigation { get; set; }
+        public virtual LogOperatingSystemType IDLogOperatingSystemTypeNavigation { get; set; }
+        public virtual LogUserAuthorizationStatus IDLogUserAuthorizationStatusNavigation { get; set; }
     }
 }

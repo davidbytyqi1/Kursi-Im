@@ -15,12 +15,12 @@ namespace KursiIm.Domain.KursiIm
             LogUserAuthorization = new HashSet<LogUserAuthorization>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime EntryDate { get; set; }
-        public DateTime IdentryUser { get; set; }
-        public DateTime EntryUser { get; set; }
+        public int IDEntryUser { get; set; }
+        public string EntryUser { get; set; }
 
         public virtual ICollection<LogDataChange> LogDataChange { get; set; }
         public virtual ICollection<LogFailedAuthentication> LogFailedAuthentication { get; set; }

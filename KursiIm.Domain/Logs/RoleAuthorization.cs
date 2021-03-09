@@ -7,19 +7,19 @@ namespace KursiIm.Domain.KursiIm
 {
     public partial class RoleAuthorization
     {
-        public int Id { get; set; }
-        public int Idrole { get; set; }
-        public int IdroleAuthorizationType { get; set; }
-        public int Idmodule { get; set; }
+        public int ID { get; set; }
+        public int IDRole { get; set; }
+        public int IDRoleAuthorizationType { get; set; }
+        public int IDModule { get; set; }
         public string EntryUser { get; set; }
         public DateTime EntryDate { get; set; }
-        public int IdentryUser { get; set; }
+        public int IDEntryUser { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public int? IdupdateUser { get; set; }
+        public int? IDUpdateUser { get; set; }
         public string UpdateUser { get; set; }
 
-        public virtual Module IdmoduleNavigation { get; set; }
-        public virtual RoleAuthorizationType IdroleAuthorizationTypeNavigation { get; set; }
-        public virtual Role IdroleNavigation { get; set; }
+        public virtual Module IDModuleNavigation { get; set; }
+        public virtual RoleAuthorizationType IDRoleAuthorizationTypeNavigation { get; set; }
+        public virtual Role IDRoleNavigation { get; set; }
     }
 }

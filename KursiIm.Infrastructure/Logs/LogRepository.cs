@@ -41,8 +41,8 @@ namespace KursiIm.Infrastructure.Logs
             _logUserAuthorizationRepository.Add(_);
         }
 
-        public IEnumerable<LogUserAuthorization> GetLogUserAuthorizationsByIdUser(int idUser) => _logUserAuthorizationRepository.ListByCriteria(_ => _.Iduser == idUser).OrderByDescending(d => d.Id);
-        public IEnumerable<LogUserAuthorization> GetLogUserAuthorizations() => _logUserAuthorizationRepository.ListAll().OrderByDescending(d => d.Id);
+        public IEnumerable<LogUserAuthorization> GetLogUserAuthorizationsByIdUser(int idUser) => _logUserAuthorizationRepository.ListByCriteria(_ => _.IDUser == idUser).OrderByDescending(d => d.ID);
+        public IEnumerable<LogUserAuthorization> GetLogUserAuthorizations() => _logUserAuthorizationRepository.ListAll().OrderByDescending(d => d.ID);
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace KursiIm.Infrastructure.Logs
             _logFailedAuthenticationRepository.Add(_);
         }
 
-        public IEnumerable<LogFailedAuthentication> GetLogFailedAuthentications(Expression<Func<LogFailedAuthentication, bool>> criteria) => _logFailedAuthenticationRepository.ListByCriteria(criteria).OrderByDescending(d => d.Id);
+        public IEnumerable<LogFailedAuthentication> GetLogFailedAuthentications(Expression<Func<LogFailedAuthentication, bool>> criteria) => _logFailedAuthenticationRepository.ListByCriteria(criteria).OrderByDescending(d => d.ID);
 
         #endregion
 
@@ -65,8 +65,8 @@ namespace KursiIm.Infrastructure.Logs
             _logDataChangeRepository.Add(_);
         }
 
-        public IEnumerable<LogDataChange> GetLogDataChanges(Expression<Func<LogDataChange, bool>> criteria) => _logDataChangeRepository.ListByCriteria(criteria, "IdlogBrowserTypeNavigation", "IdlogDataChangeStatusNavigation", "IdlogOperatingSystemTypeNavigation", "IdtableNavigation").OrderByDescending(d => d.Id);
-        public IEnumerable<LogDataChange> GetLogDataChanges() => _logDataChangeRepository.ListAll("IdlogBrowserTypeNavigation", "IdlogDataChangeStatusNavigation", "IdlogOperatingSystemTypeNavigation").OrderByDescending(d => d.Id);
+        public IEnumerable<LogDataChange> GetLogDataChanges(Expression<Func<LogDataChange, bool>> criteria) => _logDataChangeRepository.ListByCriteria(criteria, "IDLogBrowserTypeNavigation", "IDLogDataChangeStatusNavigation", "IDLogOperatingSystemTypeNavigation", "IDTableNavigation").OrderByDescending(d => d.ID);
+        public IEnumerable<LogDataChange> GetLogDataChanges() => _logDataChangeRepository.ListAll("IDLogBrowserTypeNavigation", "IDLogDataChangeStatusNavigation", "IDLogOperatingSystemTypeNavigation").OrderByDescending(d => d.ID);
 
         #endregion
 
@@ -77,10 +77,10 @@ namespace KursiIm.Infrastructure.Logs
             _logUserActivityRepository.Add(_);
         }
 
-        public IEnumerable<LogUserActivity> GetLogUserActivitiesByIdUser(int idUser) => _logUserActivityRepository.ListByCriteria(_ => _.Iduser == idUser).OrderByDescending(d => d.Id);
-        public IEnumerable<LogUserActivity> GetLogUserActivities() => _logUserActivityRepository.ListAll().OrderByDescending(d => d.Id);
-        public IEnumerable<LogUserAuthorizationStatus> GetLogUserAuthorizationStatus() => _logUserAuthorizationStatusRepository.ListAll().OrderByDescending(d => d.Id);
-        public IEnumerable<LogUserActivityStatus> GetLogUserActivityStatus() => _logUserActivityStatusRepository.ListAll().OrderByDescending(d => d.Id);
+        public IEnumerable<LogUserActivity> GetLogUserActivitiesByIdUser(int idUser) => _logUserActivityRepository.ListByCriteria(_ => _.IDUser == idUser).OrderByDescending(d => d.ID);
+        public IEnumerable<LogUserActivity> GetLogUserActivities() => _logUserActivityRepository.ListAll().OrderByDescending(d => d.ID);
+        public IEnumerable<LogUserAuthorizationStatus> GetLogUserAuthorizationStatus() => _logUserAuthorizationStatusRepository.ListAll().OrderByDescending(d => d.ID);
+        public IEnumerable<LogUserActivityStatus> GetLogUserActivityStatus() => _logUserActivityStatusRepository.ListAll().OrderByDescending(d => d.ID);
 
         public int GetTableByName(string TableName)
         {
@@ -92,9 +92,9 @@ namespace KursiIm.Infrastructure.Logs
                     Title = TableName
                 };
                 _logTableRepository.Add(model);
-                return model.Id;
+                return model.ID;
             }
-            return table.Id;
+            return table.ID;
         }
         public IEnumerable<Tables> GetTables() => _logTableRepository.ListAll();
 

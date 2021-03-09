@@ -7,8 +7,8 @@ namespace KursiIm.Domain.SeedWork
 {
     public interface IUpdateEntity
     {
-        int? IdupdateUser { get; set; }
-        string UpdateUser { get; set; }
-        DateTime? UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public int? IDUpdateUser { get; set; }
+        public string UpdateUser { get; set; }
     }
 }

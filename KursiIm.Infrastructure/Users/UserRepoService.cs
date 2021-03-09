@@ -33,16 +33,16 @@ namespace KursiIm.Infrastructure.Users
             if (IdUser == null)
                 return _userRepository.Any(t => t.Account == username);
             else
-                return _userRepository.Any(t => t.Account == username && t.Id != IdUser);
+                return _userRepository.Any(t => t.Account == username && t.ID != IdUser);
         }
         public bool CheckUserEmail(string email, int? IdUser)
         {
             if (IdUser == null)
                 return _userRepository.Any(t => t.EmailAddress == email);
             else
-                return _userRepository.Any(t => t.EmailAddress == email && t.Id != IdUser);
+                return _userRepository.Any(t => t.EmailAddress == email && t.ID != IdUser);
         }
-        public User GetUserById(int id) => _userRepository.GetSingleByCriteria(t => t.Id == id && !t.IsDeleted);
+        public User GetUserById(int id) => _userRepository.GetSingleByCriteria(t => t.ID == id && !t.IsDeleted);
         public User GetUserByEmail(string email) => _userRepository.GetSingleByCriteria(t => t.EmailAddress == email && !t.IsDeleted);
 
         public User GetUserByUsernamePortal(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted, "IdroleNavigation").FirstOrDefault();
