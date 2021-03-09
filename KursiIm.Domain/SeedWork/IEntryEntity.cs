@@ -6,7 +6,7 @@ namespace KursiIm.Domain.SeedWork
 {
     public interface IEntryEntity
     {
-        int IdEntryUser { get; set; }
+        int IdentryUser { get; set; }
         string EntryUser { get; set; }
         DateTime EntryDate { get; set; }
     }

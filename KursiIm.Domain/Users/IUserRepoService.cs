@@ -17,5 +17,6 @@ namespace KursiIm.Domain.Users
         IEnumerable<User> GetUsers();
         IEnumerable<User> GetAllUsers();
         IEnumerable<User> GetUsersWithInactive();
+        User GetUserByUsernamePortal(string username);
     }
 }

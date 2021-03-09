@@ -86,6 +86,7 @@ namespace KursiImSource
       
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<ISaveLog, SaveLog>();
+            services.AddScoped<ILogRepository, LogRepository>();
           
 
             services.Configure<ApiSettings>(Configuration.GetSection("ApiSettings"));

@@ -9,8 +9,8 @@ namespace KursiIm.Domain.KursiIm
     {
         public Module()
         {
-            LogUserActivities = new HashSet<LogUserActivity>();
-            RoleAuthorizations = new HashSet<RoleAuthorization>();
+            LogUserActivity = new HashSet<LogUserActivity>();
+            RoleAuthorization = new HashSet<RoleAuthorization>();
         }
 
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace KursiIm.Domain.KursiIm
         public int? Idparent { get; set; }
         public bool? IsPublic { get; set; }
 
-        public virtual ICollection<LogUserActivity> LogUserActivities { get; set; }
-        public virtual ICollection<RoleAuthorization> RoleAuthorizations { get; set; }
+        public virtual ICollection<LogUserActivity> LogUserActivity { get; set; }
+        public virtual ICollection<RoleAuthorization> RoleAuthorization { get; set; }
     }
 }

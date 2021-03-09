@@ -237,7 +237,7 @@ namespace KursiImSource.Services
             if (!string.IsNullOrEmpty(username))
             {
                 var currentUser = _repository.GetUserByUsername(username);
-                user.IdEntryUser = currentUser.IdEntryUser;
+                user.IdentryUser = currentUser.IdentryUser;
                 user.EntryUser = currentUser.Account;
             }
             user.EntryDate = DateTime.Now;
@@ -262,48 +262,13 @@ namespace KursiImSource.Services
             }
 
             var beforeUser = CloneObject.Clone(user);
-        //    if (_.IdUserAuthorizationType == (int)UserAuthorizationTypeIds.SystemAccount)
-        //    {
                 if (!string.IsNullOrWhiteSpace(_.Password))
                 {
-                    var hashHelper = new HashHelper(user.Password);
+                    var hashHelper = new HashHelper(_.Password);
                     user.Password = hashHelper.Hash;
                     user.SaltedPassword = hashHelper.Salt;
                     user.LatestPasswordChangeDate = DateTime.Now;
                 }
-           // }
-            //else if ((user.IdUserAuthorizationType == (int)UserAuthorizationTypeIds.SystemAccount) && (_.IdUserAuthorizationType == (int)UserAuthorizationTypeIds.ActiveDirectoryAccount))
-            //{
-            //    user.IdActiveDirectoryDomain = _.IdActiveDirectoryDomain;
-            //    user.Password = null;
-            //    user.SaltedPassword = null;
-            //    user.LatestPasswordChangeDate = DateTime.Now;
-            //}
-            //else
-            //{
-            //    user.IdActiveDirectoryDomain = _.IdActiveDirectoryDomain;
-            //}
-
-            if (string.IsNullOrWhiteSpace(_.SerialNumber))
-                try
-                {
-                  //  var deviceUser = _deviceRepository.GetDeviceUserByUserId(user.Id);
-                  //  _deviceRepository.DeleteDeviceUser(deviceUser);
-                }
-                catch { }
-            else
-            {
-                //var deviceUserCheck = _deviceRepository.GetDeviceUserByUserId(user.Id);
-                //if (deviceUserCheck == null)
-                //{
-                //    var deviceUser = new DeviceUsers()
-                //    {
-                //        IdUser = user.Id,
-                //        IdDevice = _deviceRepository.GetDevices().FirstOrDefault().Id
-                //    };
-                //    _deviceRepository.AddDeviceUser(deviceUser);
-                //}
-            }
 
             user.Account = _.Account;
             user.First = _.First;

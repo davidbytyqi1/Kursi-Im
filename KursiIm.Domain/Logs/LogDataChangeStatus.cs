@@ -9,7 +9,7 @@ namespace KursiIm.Domain.KursiIm
     {
         public LogDataChangeStatus()
         {
-            LogDataChanges = new HashSet<LogDataChange>();
+            LogDataChange = new HashSet<LogDataChange>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace KursiIm.Domain.KursiIm
         public int IdentryUser { get; set; }
         public string EntryUser { get; set; }
 
-        public virtual ICollection<LogDataChange> LogDataChanges { get; set; }
+        public virtual ICollection<LogDataChange> LogDataChange { get; set; }
     }
 }

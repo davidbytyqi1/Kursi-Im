@@ -9,7 +9,7 @@ namespace KursiIm.Domain.KursiIm
     {
         public RoleAuthorizationType()
         {
-            RoleAuthorizations = new HashSet<RoleAuthorization>();
+            RoleAuthorization = new HashSet<RoleAuthorization>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace KursiIm.Domain.KursiIm
         public int IdentryUser { get; set; }
         public string EntryUser { get; set; }
 
-        public virtual ICollection<RoleAuthorization> RoleAuthorizations { get; set; }
+        public virtual ICollection<RoleAuthorization> RoleAuthorization { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace KursiIm.Infrastructure.Users
             _userRepository.Add(_);
         }
 
-        public User GetUserByUsername(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted && t.Idrole != (int)RoleEnum.Admin).FirstOrDefault();
+        public User GetUserByUsername(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted).FirstOrDefault();
 
         public bool CheckUserAccount(string username, int? IdUser)
         {
@@ -45,7 +45,7 @@ namespace KursiIm.Infrastructure.Users
         public User GetUserById(int id) => _userRepository.GetSingleByCriteria(t => t.Id == id && !t.IsDeleted);
         public User GetUserByEmail(string email) => _userRepository.GetSingleByCriteria(t => t.EmailAddress == email && !t.IsDeleted);
 
-
+        public User GetUserByUsernamePortal(string username) => _userRepository.ListByCriteria(t => t.Account == username && !t.IsDeleted, "IdroleNavigation").FirstOrDefault();
         public IEnumerable<User> GetAllUsers()
         {
             return _userRepository.ListAll();

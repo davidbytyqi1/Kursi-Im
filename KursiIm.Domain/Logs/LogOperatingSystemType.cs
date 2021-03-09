@@ -9,8 +9,10 @@ namespace KursiIm.Domain.KursiIm
     {
         public LogOperatingSystemType()
         {
-            LogDataChanges = new HashSet<LogDataChange>();
-            LogFailedAuthentications = new HashSet<LogFailedAuthentication>();
+            LogDataChange = new HashSet<LogDataChange>();
+            LogFailedAuthentication = new HashSet<LogFailedAuthentication>();
+            LogUserActivity = new HashSet<LogUserActivity>();
+            LogUserAuthorization = new HashSet<LogUserAuthorization>();
         }
 
         public int Id { get; set; }
@@ -20,7 +22,9 @@ namespace KursiIm.Domain.KursiIm
         public DateTime IdentryUser { get; set; }
         public DateTime EntryUser { get; set; }
 
-        public virtual ICollection<LogDataChange> LogDataChanges { get; set; }
-        public virtual ICollection<LogFailedAuthentication> LogFailedAuthentications { get; set; }
+        public virtual ICollection<LogDataChange> LogDataChange { get; set; }
+        public virtual ICollection<LogFailedAuthentication> LogFailedAuthentication { get; set; }
+        public virtual ICollection<LogUserActivity> LogUserActivity { get; set; }
+        public virtual ICollection<LogUserAuthorization> LogUserAuthorization { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace KursiIm.Infrastructure.KursiIm
         {
         }
 
-        public virtual DbSet<LogDataChange> LogDataChanges { get; set; }
+        public virtual DbSet<LogDataChange> LogDataChange { get; set; }
         public virtual DbSet<LogDataChangeStatus> LogDataChangeStatuses { get; set; }
         public virtual DbSet<LogFailedAuthentication> LogFailedAuthentications { get; set; }
         public virtual DbSet<LogInternetBrowserType> LogInternetBrowserTypes { get; set; }
@@ -32,8 +32,8 @@ namespace KursiIm.Infrastructure.KursiIm
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleAuthorization> RoleAuthorizations { get; set; }
         public virtual DbSet<RoleAuthorizationType> RoleAuthorizationTypes { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Tables> Tables { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserAuthorizationType> UserAuthorizationTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,23 +46,19 @@ namespace KursiIm.Infrastructure.KursiIm
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-
             modelBuilder.Entity<LogDataChange>(entity =>
             {
-                entity.ToTable("LogDataChange");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.After)
                     .IsRequired()
                     .HasMaxLength(1000)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Before)
                     .IsRequired()
                     .HasMaxLength(1000)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.ComputerName)
                     .IsRequired()
@@ -76,8 +72,8 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.Idaddress)
                     .IsRequired()
-                    .HasMaxLength(250)
-                    .HasColumnName("IDAddress");
+                    .HasColumnName("IDAddress")
+                    .HasMaxLength(250);
 
                 entity.Property(e => e.IdentryUser).HasColumnName("IDEntryUser");
 
@@ -90,25 +86,25 @@ namespace KursiIm.Infrastructure.KursiIm
                 entity.Property(e => e.Idtable).HasColumnName("IDTable");
 
                 entity.HasOne(d => d.IdlogBrowserTypeNavigation)
-                    .WithMany(p => p.LogDataChanges)
+                    .WithMany(p => p.LogDataChange)
                     .HasForeignKey(d => d.IdlogBrowserType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogDataChange_LogInternetBrowserType");
 
                 entity.HasOne(d => d.IdlogDataChangeStatusNavigation)
-                    .WithMany(p => p.LogDataChanges)
+                    .WithMany(p => p.LogDataChange)
                     .HasForeignKey(d => d.IdlogDataChangeStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogDataChange_LogDataChangeStatus");
 
                 entity.HasOne(d => d.IdlogOperatingSystemTypeNavigation)
-                    .WithMany(p => p.LogDataChanges)
+                    .WithMany(p => p.LogDataChange)
                     .HasForeignKey(d => d.IdlogOperatingSystemType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogDataChange_LogOperatingSystemType");
 
                 entity.HasOne(d => d.IdtableNavigation)
-                    .WithMany(p => p.LogDataChanges)
+                    .WithMany(p => p.LogDataChange)
                     .HasForeignKey(d => d.Idtable)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogDataChange_Tables");
@@ -116,8 +112,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogDataChangeStatus>(entity =>
             {
-                entity.ToTable("LogDataChangeStatus");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(250);
@@ -137,13 +131,12 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogFailedAuthentication>(entity =>
             {
-                entity.ToTable("LogFailedAuthentication");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Account)
                     .IsRequired()
-                    .HasMaxLength(250);
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ComputerName)
                     .IsRequired()
@@ -157,18 +150,18 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.Ipaddress)
                     .IsRequired()
+                    .HasColumnName("IPAddress")
                     .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("IPAddress");
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.IdlogBrowserTypeNavigation)
-                    .WithMany(p => p.LogFailedAuthentications)
+                    .WithMany(p => p.LogFailedAuthentication)
                     .HasForeignKey(d => d.IdlogBrowserType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogFailedAuthentication_LogInternetBrowserType");
 
                 entity.HasOne(d => d.IdlogOperationSystemTypeNavigation)
-                    .WithMany(p => p.LogFailedAuthentications)
+                    .WithMany(p => p.LogFailedAuthentication)
                     .HasForeignKey(d => d.IdlogOperationSystemType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogFailedAuthentication_LogOperatingSystemType");
@@ -176,8 +169,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogInternetBrowserType>(entity =>
             {
-                entity.ToTable("LogInternetBrowserType");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description)
@@ -199,9 +190,9 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogOperatingSystemType>(entity =>
             {
-                entity.ToTable("LogOperatingSystemType");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -209,11 +200,12 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.EntryDate).HasColumnType("datetime");
 
-                entity.Property(e => e.EntryUser).HasColumnType("datetime");
+                entity.Property(e => e.EntryUser)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IdentryUser)
-                    .HasColumnType("datetime")
-                    .HasColumnName("IDEntryUser");
+                entity.Property(e => e.IdentryUser).HasColumnName("IDEntryUser");
 
                 entity.Property(e => e.Title)
                     .IsRequired()
@@ -222,11 +214,9 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogUserActivity>(entity =>
             {
-                entity.ToTable("LogUserActivity");
-
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ComputerName)
                     .IsRequired()
@@ -243,8 +233,8 @@ namespace KursiIm.Infrastructure.KursiIm
                 entity.Property(e => e.IdlogOperatingSystemType).HasColumnName("IDLogOperatingSystemType");
 
                 entity.Property(e => e.IdlogUserActivityStatus)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("IDLogUserActivityStatus");
+                    .HasColumnName("IDLogUserActivityStatus")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Idmodule).HasColumnName("IDModule");
 
@@ -252,22 +242,34 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.Ipaddress)
                     .IsRequired()
-                    .HasMaxLength(250)
-                    .HasColumnName("IPAddress");
+                    .HasColumnName("IPAddress")
+                    .HasMaxLength(250);
 
                 entity.Property(e => e.Url)
                     .IsRequired()
-                    .HasMaxLength(500)
-                    .HasColumnName("URL");
+                    .HasColumnName("URL")
+                    .HasMaxLength(500);
+
+                entity.HasOne(d => d.IdlogBrowserTypeNavigation)
+                    .WithMany(p => p.LogUserActivity)
+                    .HasForeignKey(d => d.IdlogBrowserType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LogUserActivity_LogInternetBrowserType");
+
+                entity.HasOne(d => d.IdlogOperatingSystemTypeNavigation)
+                    .WithMany(p => p.LogUserActivity)
+                    .HasForeignKey(d => d.IdlogOperatingSystemType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LogUserActivity_LogOperatingSystemType");
 
                 entity.HasOne(d => d.IdlogUserActivityStatusNavigation)
-                    .WithMany(p => p.LogUserActivities)
+                    .WithMany(p => p.LogUserActivity)
                     .HasForeignKey(d => d.IdlogUserActivityStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogUserActivity_LogUserActivityStatus");
 
                 entity.HasOne(d => d.IdmoduleNavigation)
-                    .WithMany(p => p.LogUserActivities)
+                    .WithMany(p => p.LogUserActivity)
                     .HasForeignKey(d => d.Idmodule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogUserActivity_Module");
@@ -275,11 +277,9 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogUserActivityStatus>(entity =>
             {
-                entity.ToTable("LogUserActivityStatus");
-
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -292,14 +292,14 @@ namespace KursiIm.Infrastructure.KursiIm
                     .HasMaxLength(250);
 
                 entity.Property(e => e.IdentryUser)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("IDEntryUser");
+                    .HasColumnName("IDEntryUser")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Title).HasMaxLength(250);
             });
 
             modelBuilder.Entity<LogUserAuthorization>(entity =>
             {
-                entity.ToTable("LogUserAuthorization");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ComputerName)
@@ -308,7 +308,10 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.EntryDate).HasColumnType("datetime");
 
-                entity.Property(e => e.EntryUser).HasColumnType("datetime");
+                entity.Property(e => e.EntryUser)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.IdlogBrowserType).HasColumnName("IDLogBrowserType");
 
@@ -320,11 +323,23 @@ namespace KursiIm.Infrastructure.KursiIm
 
                 entity.Property(e => e.Ipaddress)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("IPAddress");
+                    .HasColumnName("IPAddress")
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.IdlogBrowserTypeNavigation)
+                    .WithMany(p => p.LogUserAuthorization)
+                    .HasForeignKey(d => d.IdlogBrowserType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LogUserAuthorization_LogInternetBrowserType");
+
+                entity.HasOne(d => d.IdlogOperatingSystemTypeNavigation)
+                    .WithMany(p => p.LogUserAuthorization)
+                    .HasForeignKey(d => d.IdlogOperatingSystemType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LogUserAuthorization_LogOperatingSystemType");
 
                 entity.HasOne(d => d.IdlogUserAuthorizationStatusNavigation)
-                    .WithMany(p => p.LogUserAuthorizations)
+                    .WithMany(p => p.LogUserAuthorization)
                     .HasForeignKey(d => d.IdlogUserAuthorizationStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LogUserAuthorization_LogUserAuthorizationStatus");
@@ -332,8 +347,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<LogUserAuthorizationStatus>(entity =>
             {
-                entity.ToTable("LogUserAuthorizationStatus");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(500);
@@ -353,8 +366,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<Module>(entity =>
             {
-                entity.ToTable("Module");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(500);
@@ -376,11 +387,7 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.ToTable("Role");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(550);
 
@@ -405,8 +412,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<RoleAuthorization>(entity =>
             {
-                entity.ToTable("RoleAuthorization");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.EntryDate).HasColumnType("datetime");
@@ -430,19 +435,19 @@ namespace KursiIm.Infrastructure.KursiIm
                 entity.Property(e => e.UpdateUser).HasMaxLength(150);
 
                 entity.HasOne(d => d.IdmoduleNavigation)
-                    .WithMany(p => p.RoleAuthorizations)
+                    .WithMany(p => p.RoleAuthorization)
                     .HasForeignKey(d => d.Idmodule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleAuthorization_Module");
 
                 entity.HasOne(d => d.IdroleNavigation)
-                    .WithMany(p => p.RoleAuthorizations)
+                    .WithMany(p => p.RoleAuthorization)
                     .HasForeignKey(d => d.Idrole)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleAuthorization_Role");
 
                 entity.HasOne(d => d.IdroleAuthorizationTypeNavigation)
-                    .WithMany(p => p.RoleAuthorizations)
+                    .WithMany(p => p.RoleAuthorization)
                     .HasForeignKey(d => d.IdroleAuthorizationType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleAuthorization_RoleAuthorizationType");
@@ -450,8 +455,6 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<RoleAuthorizationType>(entity =>
             {
-                entity.ToTable("RoleAuthorizationType");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(500);
@@ -469,7 +472,7 @@ namespace KursiIm.Infrastructure.KursiIm
                     .HasMaxLength(150);
             });
 
-            modelBuilder.Entity<Table>(entity =>
+            modelBuilder.Entity<Tables>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -478,9 +481,7 @@ namespace KursiIm.Infrastructure.KursiIm
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasNoKey();
-
-                entity.ToTable("User");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Account)
                     .IsRequired()
@@ -506,8 +507,6 @@ namespace KursiIm.Infrastructure.KursiIm
                     .IsRequired()
                     .HasMaxLength(500);
 
-                entity.Property(e => e.Id).HasColumnName("ID");
-
                 entity.Property(e => e.IddeleteUser).HasColumnName("IDDeleteUser");
 
                 entity.Property(e => e.IdentryUser).HasColumnName("IDEntryUser");
@@ -517,8 +516,6 @@ namespace KursiIm.Infrastructure.KursiIm
                 entity.Property(e => e.IdupdateUser).HasColumnName("IDUpdateUser");
 
                 entity.Property(e => e.IduserAuthorizationType).HasColumnName("IDUserAuthorizationType");
-
-                entity.Property(e => e.IduserDelete).HasColumnName("IDUserDelete");
 
                 entity.Property(e => e.Last)
                     .IsRequired()
@@ -539,20 +536,18 @@ namespace KursiIm.Infrastructure.KursiIm
                 entity.Property(e => e.UserDelete).HasMaxLength(100);
 
                 entity.HasOne(d => d.IdroleNavigation)
-                    .WithMany()
+                    .WithMany(p => p.User)
                     .HasForeignKey(d => d.Idrole)
                     .HasConstraintName("FK_User_Role");
 
                 entity.HasOne(d => d.IduserAuthorizationTypeNavigation)
-                    .WithMany()
+                    .WithMany(p => p.User)
                     .HasForeignKey(d => d.IduserAuthorizationType)
                     .HasConstraintName("FK_User_UserAuthorizationType");
             });
 
             modelBuilder.Entity<UserAuthorizationType>(entity =>
             {
-                entity.ToTable("UserAuthorizationType");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description).HasMaxLength(500);
@@ -572,6 +567,7 @@ namespace KursiIm.Infrastructure.KursiIm
 
             OnModelCreatingPartial(modelBuilder);
         }
+
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

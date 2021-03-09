@@ -1,13 +1,14 @@
-﻿using System;
+﻿using KursiIm.Domain.SeedWork;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace KursiIm.Domain.KursiIm
 {
-    public partial class LogDataChange
+    public partial class LogDataChange : BaseEntity
     {
-        public int Id { get; set; }
+       // public int Id { get; set; }
         public DateTime EntryDate { get; set; }
         public int IdentryUser { get; set; }
         public string EntryUser { get; set; }
@@ -24,6 +25,6 @@ namespace KursiIm.Domain.KursiIm
         public virtual LogInternetBrowserType IdlogBrowserTypeNavigation { get; set; }
         public virtual LogDataChangeStatus IdlogDataChangeStatusNavigation { get; set; }
         public virtual LogOperatingSystemType IdlogOperatingSystemTypeNavigation { get; set; }
-        public virtual Table IdtableNavigation { get; set; }
+        public virtual Tables IdtableNavigation { get; set; }
     }
 }

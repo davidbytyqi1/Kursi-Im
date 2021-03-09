@@ -1,14 +1,15 @@
-﻿using System;
+﻿using KursiIm.Domain.SeedWork;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace KursiIm.Domain.KursiIm
 {
-    public partial class LogFailedAuthentication
+    public partial class LogFailedAuthentication : BaseEntity
     {
-        public int Id { get; set; }
-        public byte[] Account { get; set; }
+       // public int Id { get; set; }
+        public string Account { get; set; }
         public string ComputerName { get; set; }
         public string Ipaddress { get; set; }
         public int IdlogOperationSystemType { get; set; }
@@ -18,5 +19,6 @@ namespace KursiIm.Domain.KursiIm
 
         public virtual LogInternetBrowserType IdlogBrowserTypeNavigation { get; set; }
         public virtual LogOperatingSystemType IdlogOperationSystemTypeNavigation { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ namespace KursiIm.Domain.KursiIm
     [Serializable]
     public partial class User:  DeleteClass, IEntryEntity, IUpdateEntity
     {
-        public int Id { get; set; }
+        // public int Id { get; set; }
         public string First { get; set; }
         public string Last { get; set; }
         public string Account { get; set; }
@@ -20,7 +20,6 @@ namespace KursiIm.Domain.KursiIm
         public DateTime? ExpireDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? IdupdateUser { get; set; }
-        public int? IdUpdateUser { get; set; }
         public string UpdateUser { get; set; }
         public string RefreshToken { get; set; }
         public bool ChangePasswordNeeded { get; set; }
@@ -31,13 +30,11 @@ namespace KursiIm.Domain.KursiIm
         public bool? WasConfirm { get; set; }
         public DateTime? ConfirmationDate { get; set; }
         public int IdentryUser { get; set; }
-        public int IdEntryUser { get; set; }
         public string EntryUser { get; set; }
         public DateTime EntryDate { get; set; }
-        public int? IduserDelete { get; set; }
         public string UserDelete { get; set; }
+       
         public int? Idrole { get; set; }
-        public int? IddeleteUser { get; set; }
         public int? IduserAuthorizationType { get; set; }
 
         public virtual Role IdroleNavigation { get; set; }

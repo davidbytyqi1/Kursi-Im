@@ -1,11 +1,12 @@
-﻿using System;
+﻿using KursiIm.Domain.SeedWork;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace KursiIm.Domain.KursiIm
 {
-    public partial class LogUserActivity
+    public partial class LogUserActivity: BaseEntity
     {
         public int Id { get; set; }
         public int Iduser { get; set; }
@@ -21,6 +22,8 @@ namespace KursiIm.Domain.KursiIm
         public int IdlogUserActivityStatus { get; set; }
         public string EntryUser { get; set; }
 
+        public virtual LogInternetBrowserType IdlogBrowserTypeNavigation { get; set; }
+        public virtual LogOperatingSystemType IdlogOperatingSystemTypeNavigation { get; set; }
         public virtual LogUserActivityStatus IdlogUserActivityStatusNavigation { get; set; }
         public virtual Module IdmoduleNavigation { get; set; }
     }

@@ -15,10 +15,7 @@ namespace KursiIm.SharedModel.Users
         public string Last { get; set; }
         public bool IsActive { get; set; }
         public DateTime? ExprieDate { get; set; }
-        public int? IdEmployee { get; set; }
         public bool HasExpire { get; set; }
-        public bool WithUserAuthorization { get; set; }
-        public string SerialNumber { get; set; }
         public int IdUserAuthorizationType { get; set; }
         // public int IdOrganisation { get; set; }
     }
