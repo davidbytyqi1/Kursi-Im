@@ -1,4 +1,6 @@
-﻿using KursiIm.Domain.KursiIm;
+﻿using KursiIm.Domain.Courses;
+using KursiIm.Domain.KursiIm;
+using KursiIm.Domain.Publication;
 using KursiIm.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
@@ -38,5 +40,9 @@ namespace KursiIm.Domain.KursiIm
 
         public virtual Role IDRoleNavigation { get; set; }
         public virtual UserAuthorizationType IDUserAuthorizationTypeNavigation { get; set; }
+        public virtual ICollection<Company> Company { get; set; }
+        public virtual ICollection<CompanyDocuments> CompanyDocuments { get; set; }
+        public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<Publications> Publications { get; set; }
     }
 }
